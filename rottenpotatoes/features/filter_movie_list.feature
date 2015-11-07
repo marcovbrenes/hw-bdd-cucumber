@@ -27,7 +27,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to uncheck all other checkboxes
     And I uncheck the following ratings: "G, PG-13, NC-17"
   # enter step to "submit" the search form on the homepage
-    And I press "ratings_submit"
+  When I press "Refresh"
   # enter step(s) to ensure that PG and R movies are visible
   Then I should see "The Terminator"
     And I should see "When Harry Met Sally"
