@@ -1,13 +1,10 @@
 # Add a declarative step here for populating the DB with movies.
 
-movies_count = 0
 Given /the following movies exist/ do |movies_table|
-  movies_count = 0
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
     Movie.create(movie)
-    movies_count = movies_count + 1
   end
   #fail "Unimplemented"
 end
@@ -54,6 +51,8 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  movies_count.should == Movie.all.length
+  #movie_count.should == Movie.all.length
+  value = Movie.all.count
+  expect(page).to have_xpath(".//tr", :count => value + 1)
   #fail "Unimplemented"
 end
